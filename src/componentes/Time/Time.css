@@ -1,5 +1,7 @@
 .time {
+    background-blend-mode: multiply;
     padding: 32px;
+    position: relative;
     text-align: center;
 }
 
@@ -15,4 +17,13 @@
     flex-wrap: wrap;
     justify-content: space-around;
     margin-top: 32px;
+}
+
+.inputCor {
+    border: none;
+    height: 50px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 50px;
 }
