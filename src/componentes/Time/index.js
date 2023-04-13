@@ -1,32 +1,34 @@
-import hexToRgba from 'hex-to-rgba';
 import Colaborador from '../Colaborador'
+import hexToRgba from 'hex-to-rgba';
 import './Time.css'
 
-const Time = (props) => {
+const Time = ({ time, colaboradores, aoDeletar, mudarCor, aoFavoritar }) => {
     return (
-        props.colaboradores.length > 0 && <section className='time' style={{  backgroundImage: 'url(/imagens/fundo.png)', backgroundColor: hexToRgba(props.cor, '0.6') }}>
+
+        colaboradores.length > 0 && <section className='time' style={{ backgroundImage: 'url(/imagens/fundo.png)', backgroundColor: hexToRgba(time.cor, '0.6') }}>
             <input 
-                onChange={evento => props.mudarCor(evento.target.value, props.nome)} 
-                value={props.cor} 
                 type='color' 
-                className='inputCor'/>
-            <h3 style={{ borderColor: props.cor }}>{props.nome}</h3>
+                className='inputCor' 
+                value={time.cor} 
+                onChange={evento => { mudarCor(evento.target.value, time.id)}} 
+            />
+            <h3 style={{ borderColor: time.cor }}>{time.nome}</h3>
             <div className='colaboradores'>
-                {props.colaboradores.map((colaborador, indice) => {
+                {colaboradores.map((colaborador, indice) => {
                     return (
                         <Colaborador 
-                            corDeFundo={props.cor}
-                            key={indice}
-                            nome={colaborador.nome} 
-                            cargo={colaborador.cargo}
-                            imagem={colaborador.imagem}
-                            aoDeletar={props.aoDeletar}
+                        key={indice} 
+                        colaborador={colaborador} 
+                        corDeFundo={time.cor} 
+                        aoDeletar={aoDeletar} 
+                        aoFavoritar={aoFavoritar}
                         />
                     )
-                })}    
+                })}        
             </div>
         </section>
+
     )
-} 
+}
 
 export default Time
